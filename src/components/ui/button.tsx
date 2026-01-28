@@ -15,9 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        copper: "bg-gradient-copper text-secondary-foreground shadow-copper hover:shadow-elevated hover:scale-105 font-display uppercase tracking-wider",
-        hero: "bg-primary text-primary-foreground hover:bg-navy-light font-display uppercase tracking-wider border-2 border-copper",
-        outlineCopper: "border-2 border-copper text-copper hover:bg-copper hover:text-secondary-foreground font-display uppercase tracking-wider",
+        green: "bg-gradient-green text-secondary-foreground shadow-green hover:shadow-elevated hover:scale-105 font-display uppercase tracking-wider",
+        hero: "bg-primary text-primary-foreground hover:bg-forest-light font-display uppercase tracking-wider border-2 border-green",
+        outlineGreen: "border-2 border-green text-green hover:bg-green hover:text-secondary-foreground font-display uppercase tracking-wider",
       },
       size: {
         default: "h-10 px-4 py-2 text-sm",

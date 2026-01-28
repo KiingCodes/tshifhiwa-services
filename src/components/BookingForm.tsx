@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, Wrench, Zap, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const bookingSchema = z.object({
@@ -77,8 +78,18 @@ const BookingForm = () => {
       bookingSchema.parse(formData);
       setIsSubmitting(true);
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Call edge function to send email
+      const { data, error } = await supabase.functions.invoke('send-booking', {
+        body: formData,
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Failed to submit booking');
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.error || 'Failed to submit booking');
+      }
 
       setIsSuccess(true);
       toast({
@@ -110,6 +121,12 @@ const BookingForm = () => {
           }
         });
         setErrors(newErrors);
+      } else {
+        toast({
+          title: "Error",
+          description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
       }
     } finally {
       setIsSubmitting(false);
@@ -127,8 +144,8 @@ const BookingForm = () => {
       <section id="booking" className="py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-copper/20 flex items-center justify-center">
-              <CheckCircle className="w-12 h-12 text-copper" />
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-green/20 flex items-center justify-center">
+              <CheckCircle className="w-12 h-12 text-green" />
             </div>
             <h2 className="font-display text-4xl text-foreground mb-4">BOOKING CONFIRMED!</h2>
             <p className="text-muted-foreground text-lg">
@@ -145,9 +162,9 @@ const BookingForm = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <span className="inline-block text-copper font-display uppercase tracking-widest text-sm mb-4">Get Started</span>
+          <span className="inline-block text-green font-display uppercase tracking-widest text-sm mb-4">Get Started</span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
-            BOOK A <span className="text-gradient-copper">SERVICE</span>
+            BOOK A <span className="text-gradient-green">SERVICE</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Fill out the form below and we'll get back to you within 24 hours to confirm your appointment.
@@ -160,7 +177,7 @@ const BookingForm = () => {
             {/* Name */}
             <div className="space-y-2">
               <Label htmlFor="name" className="flex items-center gap-2 text-foreground">
-                <User className="w-4 h-4 text-copper" />
+                <User className="w-4 h-4 text-green" />
                 Full Name *
               </Label>
               <Input
@@ -176,7 +193,7 @@ const BookingForm = () => {
             {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2 text-foreground">
-                <Mail className="w-4 h-4 text-copper" />
+                <Mail className="w-4 h-4 text-green" />
                 Email Address *
               </Label>
               <Input
@@ -193,13 +210,13 @@ const BookingForm = () => {
             {/* Phone */}
             <div className="space-y-2">
               <Label htmlFor="phone" className="flex items-center gap-2 text-foreground">
-                <Phone className="w-4 h-4 text-copper" />
+                <Phone className="w-4 h-4 text-green" />
                 Phone Number *
               </Label>
               <Input
                 id="phone"
                 type="tel"
-                placeholder="012 345 6789"
+                placeholder="083 212 0479"
                 value={formData.phone}
                 onChange={e => handleChange("phone", e.target.value)}
                 className={errors.phone ? "border-destructive" : ""}
@@ -210,7 +227,7 @@ const BookingForm = () => {
             {/* Service Type */}
             <div className="space-y-2">
               <Label className="flex items-center gap-2 text-foreground">
-                {formData.serviceType === "electrical" ? <Zap className="w-4 h-4 text-electric" /> : <Wrench className="w-4 h-4 text-copper" />}
+                {formData.serviceType === "electrical" ? <Zap className="w-4 h-4 text-electric" /> : <Wrench className="w-4 h-4 text-green" />}
                 Service Type *
               </Label>
               <Select value={formData.serviceType} onValueChange={value => {
@@ -231,7 +248,7 @@ const BookingForm = () => {
             {/* Specific Service */}
             <div className="space-y-2">
               <Label className="flex items-center gap-2 text-foreground">
-                <MessageSquare className="w-4 h-4 text-copper" />
+                <MessageSquare className="w-4 h-4 text-green" />
                 Specific Service *
               </Label>
               <Select 
@@ -254,7 +271,7 @@ const BookingForm = () => {
             {/* Preferred Date */}
             <div className="space-y-2">
               <Label htmlFor="date" className="flex items-center gap-2 text-foreground">
-                <Calendar className="w-4 h-4 text-copper" />
+                <Calendar className="w-4 h-4 text-green" />
                 Preferred Date *
               </Label>
               <Input
@@ -271,7 +288,7 @@ const BookingForm = () => {
             {/* Preferred Time */}
             <div className="space-y-2 md:col-span-2">
               <Label className="flex items-center gap-2 text-foreground">
-                <Clock className="w-4 h-4 text-copper" />
+                <Clock className="w-4 h-4 text-green" />
                 Preferred Time *
               </Label>
               <Select value={formData.preferredTime} onValueChange={value => handleChange("preferredTime", value)}>
@@ -290,7 +307,7 @@ const BookingForm = () => {
             {/* Message */}
             <div className="space-y-2 md:col-span-2">
               <Label htmlFor="message" className="flex items-center gap-2 text-foreground">
-                <MessageSquare className="w-4 h-4 text-copper" />
+                <MessageSquare className="w-4 h-4 text-green" />
                 Additional Details (Optional)
               </Label>
               <Textarea
@@ -307,7 +324,7 @@ const BookingForm = () => {
           <div className="mt-8">
             <Button 
               type="submit" 
-              variant="copper" 
+              variant="green" 
               size="xl" 
               className="w-full"
               disabled={isSubmitting}

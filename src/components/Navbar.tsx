@@ -25,14 +25,11 @@ const Navbar = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Brand Name Only - No Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-copper flex items-center justify-center">
-              <Wrench className="w-5 h-5 text-secondary-foreground" />
-            </div>
             <div>
-              <h1 className="font-display text-lg text-primary-foreground leading-tight">TSHIFHIWA</h1>
-              <p className="text-copper text-xs font-display tracking-wider">P&E SERVICES</p>
+              <h1 className="font-display text-xl text-primary-foreground leading-tight">TSHIFHIWA</h1>
+              <p className="text-green text-xs font-display tracking-wider">PLUMBING & ELECTRICAL</p>
             </div>
           </div>
 
@@ -40,24 +37,24 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <button 
               onClick={() => scrollToSection("services")}
-              className="text-primary-foreground/80 hover:text-copper transition-colors font-medium"
+              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
             >
               Services
             </button>
             <button 
               onClick={() => scrollToSection("booking")}
-              className="text-primary-foreground/80 hover:text-copper transition-colors font-medium"
+              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
             >
               Book Now
             </button>
             <a 
-              href="tel:+27123456789"
-              className="flex items-center gap-2 text-copper font-medium"
+              href="tel:+27832120479"
+              className="flex items-center gap-2 text-green font-medium"
             >
               <Phone className="w-4 h-4" />
-              +27 12 345 6789
+              +27 83 212 0479
             </a>
-            <Button variant="copper" size="sm" onClick={() => scrollToSection("booking")}>
+            <Button variant="green" size="sm" onClick={() => scrollToSection("booking")}>
               Get Quote
             </Button>
           </div>
@@ -77,24 +74,24 @@ const Navbar = () => {
             <div className="flex flex-col gap-4">
               <button 
                 onClick={() => scrollToSection("services")}
-                className="text-primary-foreground/80 hover:text-copper transition-colors font-medium text-left"
+                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection("booking")}
-                className="text-primary-foreground/80 hover:text-copper transition-colors font-medium text-left"
+                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
               >
                 Book Now
               </button>
               <a 
-                href="tel:+27123456789"
-                className="flex items-center gap-2 text-copper font-medium"
+                href="tel:+27832120479"
+                className="flex items-center gap-2 text-green font-medium"
               >
                 <Phone className="w-4 h-4" />
-                +27 12 345 6789
+                +27 83 212 0479
               </a>
-              <Button variant="copper" size="lg" onClick={() => scrollToSection("booking")}>
+              <Button variant="green" size="lg" onClick={() => scrollToSection("booking")}>
                 Get Quote
               </Button>
             </div>

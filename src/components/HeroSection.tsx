@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Wrench, Zap, Phone, ArrowDown } from "lucide-react";
+import heroBackground from "@/assets/hero-background.jpg";
 
 const HeroSection = () => {
   const scrollToBooking = () => {
@@ -11,7 +12,16 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-hero overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      />
+      
+      {/* Dark Overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/80 to-green-dark/70" />
+      
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 border-4 border-green/20 rounded-full animate-float" />

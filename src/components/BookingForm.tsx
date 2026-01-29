@@ -182,7 +182,7 @@ const BookingForm = () => {
               </Label>
               <Input
                 id="name"
-                placeholder="John Doe"
+                placeholder="Kiing Ncube"
                 value={formData.name}
                 onChange={e => handleChange("name", e.target.value)}
                 className={errors.name ? "border-destructive" : ""}
@@ -199,7 +199,7 @@ const BookingForm = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="kiing@example.com"
                 value={formData.email}
                 onChange={e => handleChange("email", e.target.value)}
                 className={errors.email ? "border-destructive" : ""}

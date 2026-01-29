@@ -12,6 +12,7 @@ import {
   Cable,
   Waves
 } from "lucide-react";
+import servicesBackground from "@/assets/services-background.jpg";
 
 const plumbingServices = [
   { icon: Droplets, title: "Leak Detection & Repair", description: "Advanced leak detection technology to find and fix hidden leaks fast." },
@@ -32,7 +33,7 @@ const electricalServices = [
 ];
 
 const ServiceCard = ({ icon: Icon, title, description, type }: { icon: any; title: string; description: string; type: 'plumbing' | 'electrical' }) => (
-  <div className="group relative bg-card rounded-lg p-6 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+  <div className="group relative bg-card/95 backdrop-blur-sm rounded-lg p-6 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 overflow-hidden">
     {/* Accent Line */}
     <div className={`absolute top-0 left-0 w-full h-1 ${type === 'plumbing' ? 'bg-gradient-green' : 'bg-electric'}`} />
     
@@ -53,8 +54,16 @@ const ServiceCard = ({ icon: Icon, title, description, type }: { icon: any; titl
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="services" className="relative py-24 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${servicesBackground})` }}
+      />
+      
+      {/* Light Overlay for readability */}
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-[2px]" />
+      <div className="relative z-10 container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block text-green font-display uppercase tracking-widest text-sm mb-4">What We Offer</span>

@@ -40,7 +40,7 @@ const ContactSection = () => {
             </div>
             <h3 className="font-display text-lg text-foreground mb-2">LOCATION</h3>
             <p className="text-muted-foreground">
-              Serving Limpopo & Surrounding Areas
+              Serving Johannesburg & Surrounding Areas
             </p>
             <p className="text-muted-foreground text-sm mt-1">
               South Africa

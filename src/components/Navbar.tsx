@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Wrench, Menu, X, Phone } from "lucide-react";
+import logo from "@/assets/logo.png"; // ✅ IMPORT LOGO
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,34 +21,49 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-primary/95 backdrop-blur-md shadow-lg py-3" : "bg-transparent py-5"
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-primary/95 backdrop-blur-md shadow-lg py-3"
+          : "bg-transparent py-5"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          {/* Brand Name Only - No Logo */}
-          <div className="flex items-center gap-3">
+          
+          {/* ✅ LOGO + BRAND */}
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection("home")}>
+            <img
+              src={logo}
+              alt="Tshifhiwa Logo"
+              className="h-14 w-auto object-contain"
+            />
+
             <div>
-              <h1 className="font-display text-xl text-primary-foreground leading-tight">TSHIFHIWA</h1>
-              <p className="text-green text-xs font-display tracking-wider">PLUMBING & ELECTRICAL</p>
+              <h1 className="font-display text-2xl text-primary-foreground leading-tight">
+                TSHIFHIWA
+              </h1>
+              <p className="text-green text-sm font-display tracking-wider">
+                PLUMBING & ELECTRICAL
+              </p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <button 
+            <button
               onClick={() => scrollToSection("services")}
               className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
             >
               Services
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection("booking")}
               className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
             >
               Book Now
             </button>
-            <a 
+            <a
               href="tel:+27832120479"
               className="flex items-center gap-2 text-green font-medium"
             >
@@ -60,11 +76,15 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-primary-foreground p-2"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -72,26 +92,30 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-primary-foreground/10">
             <div className="flex flex-col gap-4">
-              <button 
+              <button
                 onClick={() => scrollToSection("services")}
                 className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
               >
                 Services
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection("booking")}
                 className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
               >
                 Book Now
               </button>
-              <a 
+              <a
                 href="tel:+27832120479"
                 className="flex items-center gap-2 text-green font-medium"
               >
                 <Phone className="w-4 h-4" />
                 +27 83 212 0479
               </a>
-              <Button variant="green" size="lg" onClick={() => scrollToSection("booking")}>
+              <Button
+                variant="green"
+                size="lg"
+                onClick={() => scrollToSection("booking")}
+              >
                 Get Quote
               </Button>
             </div>

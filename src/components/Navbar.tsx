@@ -23,9 +23,9 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-primary/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-transparent py-5"
+      isScrolled
+  ? "bg-white shadow-md py-3"
+  : "bg-white py-5"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -40,7 +40,7 @@ const Navbar = () => {
             />
 
             <div>
-              <h1 className="font-display text-2xl text-primary-foreground leading-tight">
+              <h1 className="font-display text-2xl text-black leading-tight">
                 TSHIFHIWA
               </h1>
               <p className="text-green text-sm font-display tracking-wider">

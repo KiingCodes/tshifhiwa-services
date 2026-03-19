@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Wrench, Zap, Phone, ArrowDown } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
+import logo from "@/assets/logo.png"; // ✅ ADD LOGO
 
 const HeroSection = () => {
   const scrollToBooking = () => {
@@ -34,18 +35,23 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-4xl">
+          
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-green/20 backdrop-blur-sm border border-green/30 rounded-full px-4 py-2 mb-8">
             <Zap className="w-4 h-4 text-green" />
-            <span className="text-green text-sm font-medium">Licensed & Certified Professionals</span>
+            <span className="text-green text-sm font-medium">
+              Licensed & Certified Professionals
+            </span>
           </div>
 
-          {/* Main Heading */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-primary-foreground leading-tight mb-6">
-            TSHIFHIWA
-            <span className="block text-gradient-green">PLUMBING &</span>
-            <span className="block">ELECTRICAL</span>
-          </h1>
+          {/* ✅ BIG LOGO INSTEAD OF HEADING */}
+          <div className="mb-6 flex justify-center md:justify-start">
+            <img
+              src={logo}
+              alt="Tshifhiwa Plumbing & Electrical"
+              className="h-48 md:h-64 lg:h-80 w-auto object-contain drop-shadow-xl"
+            />
+          </div>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mb-10 font-light">
@@ -68,15 +74,21 @@ const HeroSection = () => {
           <div className="grid grid-cols-3 gap-8 max-w-xl">
             <div className="text-center">
               <div className="font-display text-4xl md:text-5xl text-green mb-1">6+</div>
-              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">Years Experience</div>
+              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">
+                Years Experience
+              </div>
             </div>
             <div className="text-center">
               <div className="font-display text-4xl md:text-5xl text-green mb-1">500+</div>
-              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">Projects Done</div>
+              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">
+                Projects Done
+              </div>
             </div>
             <div className="text-center">
               <div className="font-display text-4xl md:text-5xl text-green mb-1">24/7</div>
-              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">Emergency Service</div>
+              <div className="text-primary-foreground/60 text-sm uppercase tracking-wider">
+                Emergency Service
+              </div>
             </div>
           </div>
         </div>
@@ -92,7 +104,10 @@ const HeroSection = () => {
         <div className="w-16 h-16 rounded-full bg-green/20 backdrop-blur-sm flex items-center justify-center animate-pulse-glow">
           <Wrench className="w-8 h-8 text-green" />
         </div>
-        <div className="w-16 h-16 rounded-full bg-electric/20 backdrop-blur-sm flex items-center justify-center animate-pulse-glow" style={{ animationDelay: "1s" }}>
+        <div
+          className="w-16 h-16 rounded-full bg-electric/20 backdrop-blur-sm flex items-center justify-center animate-pulse-glow"
+          style={{ animationDelay: "1s" }}
+        >
           <Zap className="w-8 h-8 text-electric" />
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { 
   Droplets, 
   Zap, 
@@ -83,19 +84,17 @@ const ServiceCard = ({ icon: Icon, title, description, type, index }: { icon: an
 };
 
 const ServicesSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+
   return (
     <section id="services" className="relative py-24 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${servicesBackground})` }}
-      />
-      
-      {/* Light Overlay for readability */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${servicesBackground})` }} />
       <div className="absolute inset-0 bg-background/90 backdrop-blur-[2px]" />
       <div className="relative z-10 container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+        >
           <span className="inline-block text-green font-display uppercase tracking-widest text-sm mb-4">What We Offer</span>
           <h2 className="font-display text-4xl md:text-5xl text-foreground mb-4">
             OUR EXPERT <span className="text-gradient-green">SERVICES</span>

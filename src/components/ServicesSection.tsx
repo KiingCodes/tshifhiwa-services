@@ -113,8 +113,21 @@ const ServicesSection = () => {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Electronics Services */}
+        <div className="mt-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-12 rounded-full bg-electric/20 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-electric" />
+            </div>
+            <h3 className="font-display text-2xl md:text-3xl text-foreground">ELECTRONICS & SECURITY</h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {electronicsServices.map((service, index) => (
+              <ServiceCard key={index} {...service} type="electrical" />
+            ))}
+          </div>
+        </div>
   );
 };
 

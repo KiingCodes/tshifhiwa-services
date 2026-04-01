@@ -96,9 +96,10 @@ const Footer = () => {
             <p className="text-primary-foreground/40 text-sm">
               © {currentYear} Tshifhiwa Plumbing & Electrical. All rights reserved.
             </p>
-            <p className="text-primary-foreground/40 text-sm">
-              Licensed & Insured | Quality Service Guaranteed
-            </p>
+            <div className="flex items-center gap-2">
+              <span className="text-primary-foreground/40 text-sm">Site managed by</span>
+              <img src={jeweliqLogo} alt="JewelIQ" className="h-6 w-auto" />
+            </div>
           </div>
         </div>
       </div>

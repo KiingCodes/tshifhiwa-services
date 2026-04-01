@@ -16,21 +16,6 @@ import {
   Bell,
   DoorOpen
 } from "lucide-react";
-  Zap, 
-  Wrench, 
-  ShowerHead, 
-  Lightbulb, 
-  Plug, 
-  PipetteIcon, 
-  CircuitBoard,
-  Fan,
-  Gauge,
-  Cable,
-  Waves,
-  Shield,
-  Bell,
-  DoorOpen
-} from "lucide-react";
 import servicesBackground from "@/assets/services-background.jpg";
 
 const plumbingServices = [

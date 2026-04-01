@@ -128,6 +128,8 @@ const ServicesSection = () => {
             ))}
           </div>
         </div>
+      </div>
+    </section>
   );
 };
 

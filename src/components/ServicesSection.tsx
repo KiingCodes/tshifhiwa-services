@@ -130,7 +130,7 @@ const ServicesSection = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {electricalServices.map((service, index) => (
-              <ServiceCard key={index} {...service} type="electrical" />
+              <ServiceCard key={index} {...service} type="electrical" index={index} />
             ))}
           </div>
         </div>

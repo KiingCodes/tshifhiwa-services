@@ -110,11 +110,14 @@ const BookingForm = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto">Fill out the form below and we'll get back to you within 24 hours to confirm your appointment.</p>
         </div>
 
-        <form
+        <div
           ref={formRef}
-          onSubmit={handleSubmit}
-          className={`max-w-3xl mx-auto bg-card rounded-xl shadow-elevated p-8 md:p-10 transition-all duration-700 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+          className={`transition-all duration-700 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
           style={{ transitionDelay: '200ms' }}
+        >
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-3xl mx-auto bg-card rounded-xl shadow-elevated p-8 md:p-10"
         >
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">

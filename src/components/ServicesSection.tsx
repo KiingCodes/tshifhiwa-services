@@ -115,7 +115,7 @@ const ServicesSection = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {plumbingServices.map((service, index) => (
-              <ServiceCard key={index} {...service} type="plumbing" />
+              <ServiceCard key={index} {...service} type="plumbing" index={index} />
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { 
   Droplets, 
   Zap, 

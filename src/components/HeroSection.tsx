@@ -49,7 +49,7 @@ const HeroSection = () => {
             <img
               src={logo}
               alt="Tshifhiwa Plumbing & Electrical"
-              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-xl"
+              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-xl animate-spin-slow"
             />
           </div>
 

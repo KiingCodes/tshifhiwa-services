@@ -10,7 +10,10 @@ import {
   Fan,
   Gauge,
   Cable,
-  Waves
+  Waves,
+  Shield,
+  Bell,
+  DoorOpen
 } from "lucide-react";
 import servicesBackground from "@/assets/services-background.jpg";
 
@@ -30,6 +33,12 @@ const electricalServices = [
   { icon: Cable, title: "Electrical Wiring", description: "Complete rewiring and new construction wiring services." },
   { icon: Fan, title: "Ceiling Fan Installation", description: "Professional ceiling fan and extractor fan fitting." },
   { icon: Zap, title: "Emergency Electrical", description: "Fast response for electrical emergencies and power outages." },
+];
+
+const electronicsServices = [
+  { icon: Shield, title: "Electric Fence Installation & Repairs", description: "Professional electric fence installation, maintenance, and repair for maximum security." },
+  { icon: Bell, title: "Alarm Systems Installation & Repairs", description: "Complete alarm system setup, servicing, and troubleshooting for homes and businesses." },
+  { icon: DoorOpen, title: "Gate Motor Installation & Repairs", description: "Sliding and swing gate motor installation, repairs, and remote programming." },
 ];
 
 const ServiceCard = ({ icon: Icon, title, description, type }: { icon: any; title: string; description: string; type: 'plumbing' | 'electrical' }) => (
@@ -100,6 +109,21 @@ const ServicesSection = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {electricalServices.map((service, index) => (
+              <ServiceCard key={index} {...service} type="electrical" />
+            ))}
+          </div>
+        </div>
+
+        {/* Electronics Services */}
+        <div className="mt-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-12 rounded-full bg-electric/20 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-electric" />
+            </div>
+            <h3 className="font-display text-2xl md:text-3xl text-foreground">ELECTRONICS & SECURITY</h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {electronicsServices.map((service, index) => (
               <ServiceCard key={index} {...service} type="electrical" />
             ))}
           </div>

@@ -1,4 +1,5 @@
-import { Wrench, Zap, Phone } from "lucide-react";
+import { Wrench, Zap, Phone, Shield } from "lucide-react";
+import jeweliqLogo from "@/assets/jeweliq-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -77,6 +78,14 @@ const Footer = () => {
                 <Zap className="w-4 h-4 text-electric" />
                 DB Board Installation
               </li>
+              <li className="flex items-center gap-2 text-primary-foreground/60">
+                <Shield className="w-4 h-4 text-electric" />
+                Electric Fence & Alarms
+              </li>
+              <li className="flex items-center gap-2 text-primary-foreground/60">
+                <Shield className="w-4 h-4 text-electric" />
+                Gate Motor Installation
+              </li>
             </ul>
           </div>
         </div>
@@ -87,9 +96,10 @@ const Footer = () => {
             <p className="text-primary-foreground/40 text-sm">
               © {currentYear} Tshifhiwa Plumbing & Electrical. All rights reserved.
             </p>
-            <p className="text-primary-foreground/40 text-sm">
-              Licensed & Insured | Quality Service Guaranteed
-            </p>
+            <div className="flex items-center gap-2">
+              <span className="text-primary-foreground/40 text-sm">Site managed by</span>
+              <img src={jeweliqLogo} alt="JewelIQ" className="h-6 w-auto" />
+            </div>
           </div>
         </div>
       </div>

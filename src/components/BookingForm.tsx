@@ -173,6 +173,7 @@ const BookingForm = () => {
             <Button type="submit" variant="green" size="xl" className="w-full" disabled={isSubmitting}>{isSubmitting ? "Submitting..." : "Book Appointment"}</Button>
           </div>
         </form>
+        </div>
       </div>
     </section>
   );

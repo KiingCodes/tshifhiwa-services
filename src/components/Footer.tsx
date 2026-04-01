@@ -98,7 +98,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2">
               <span className="text-primary-foreground/40 text-sm">Site managed by</span>
-              <img src={jeweliqLogo} alt="JewelIQ" className="h-6 w-auto" />
+              <img src={jeweliqLogo} alt="JewelIQ" className="h-10 w-auto" />
             </div>
           </div>
         </div>

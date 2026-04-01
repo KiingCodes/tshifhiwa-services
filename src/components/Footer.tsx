@@ -1,4 +1,5 @@
-import { Wrench, Zap, Phone } from "lucide-react";
+import { Wrench, Zap, Phone, Shield } from "lucide-react";
+import jeweliqLogo from "@/assets/jeweliq-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

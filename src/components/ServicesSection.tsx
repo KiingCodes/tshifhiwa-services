@@ -42,8 +42,27 @@ const electronicsServices = [
   { icon: DoorOpen, title: "Gate Motor Installation & Repairs", description: "Sliding and swing gate motor installation, repairs, and remote programming." },
 ];
 
-const ServiceCard = ({ icon: Icon, title, description, type }: { icon: any; title: string; description: string; type: 'plumbing' | 'electrical' }) => (
-  <div className="group relative bg-card/95 backdrop-blur-sm rounded-lg p-6 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+const ServiceCard = ({ icon: Icon, title, description, type, index }: { icon: any; title: string; description: string; type: 'plumbing' | 'electrical'; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+  <div
+    ref={ref}
+    className={`group relative bg-card/95 backdrop-blur-sm rounded-lg p-6 shadow-card hover:shadow-elevated transition-all duration-500 hover:-translate-y-2 overflow-hidden ${
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+    }`}
+    style={{ transitionDelay: `${index * 100}ms` }}
+  >
     {/* Accent Line */}
     <div className={`absolute top-0 left-0 w-full h-1 ${type === 'plumbing' ? 'bg-gradient-green' : 'bg-electric'}`} />
     

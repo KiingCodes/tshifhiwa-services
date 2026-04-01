@@ -78,6 +78,14 @@ const Footer = () => {
                 <Zap className="w-4 h-4 text-electric" />
                 DB Board Installation
               </li>
+              <li className="flex items-center gap-2 text-primary-foreground/60">
+                <Shield className="w-4 h-4 text-electric" />
+                Electric Fence & Alarms
+              </li>
+              <li className="flex items-center gap-2 text-primary-foreground/60">
+                <Shield className="w-4 h-4 text-electric" />
+                Gate Motor Installation
+              </li>
             </ul>
           </div>
         </div>

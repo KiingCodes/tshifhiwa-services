@@ -10,7 +10,10 @@ import {
   Fan,
   Gauge,
   Cable,
-  Waves
+  Waves,
+  Shield,
+  Bell,
+  DoorOpen
 } from "lucide-react";
 import servicesBackground from "@/assets/services-background.jpg";
 
@@ -30,6 +33,12 @@ const electricalServices = [
   { icon: Cable, title: "Electrical Wiring", description: "Complete rewiring and new construction wiring services." },
   { icon: Fan, title: "Ceiling Fan Installation", description: "Professional ceiling fan and extractor fan fitting." },
   { icon: Zap, title: "Emergency Electrical", description: "Fast response for electrical emergencies and power outages." },
+];
+
+const electronicsServices = [
+  { icon: Shield, title: "Electric Fence Installation & Repairs", description: "Professional electric fence installation, maintenance, and repair for maximum security." },
+  { icon: Bell, title: "Alarm Systems Installation & Repairs", description: "Complete alarm system setup, servicing, and troubleshooting for homes and businesses." },
+  { icon: DoorOpen, title: "Gate Motor Installation & Repairs", description: "Sliding and swing gate motor installation, repairs, and remote programming." },
 ];
 
 const ServiceCard = ({ icon: Icon, title, description, type }: { icon: any; title: string; description: string; type: 'plumbing' | 'electrical' }) => (

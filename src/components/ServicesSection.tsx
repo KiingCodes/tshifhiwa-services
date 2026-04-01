@@ -1,5 +1,21 @@
+import { useEffect, useRef, useState } from "react";
 import { 
   Droplets, 
+  Zap, 
+  Wrench, 
+  ShowerHead, 
+  Lightbulb, 
+  Plug, 
+  PipetteIcon, 
+  CircuitBoard,
+  Fan,
+  Gauge,
+  Cable,
+  Waves,
+  Shield,
+  Bell,
+  DoorOpen
+} from "lucide-react";
   Zap, 
   Wrench, 
   ShowerHead, 

@@ -79,7 +79,8 @@ const ServiceCard = ({ icon: Icon, title, description, type, index }: { icon: an
     <h3 className="font-display text-xl text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
   </div>
-);
+  );
+};
 
 const ServicesSection = () => {
   return (

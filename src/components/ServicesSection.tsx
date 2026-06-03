@@ -59,29 +59,40 @@ const ServiceCard = ({ icon: Icon, title, description, type, index }: { icon: an
   return (
   <div
     ref={ref}
-    className={`group relative bg-card/95 backdrop-blur-sm rounded-lg p-6 shadow-card hover:shadow-elevated transition-all duration-500 hover:-translate-y-2 overflow-hidden ${
+    className={`group relative bg-gradient-to-br from-card to-card/80 backdrop-blur-sm rounded-2xl p-7 shadow-card hover:shadow-elevated transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-border/50 hover:border-green/40 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
     }`}
     style={{ transitionDelay: `${index * 100}ms` }}
   >
+    {/* Glow effect on hover */}
+    <div className={`absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 ${
+      type === 'plumbing' ? 'bg-gradient-green' : 'bg-electric'
+    }`} />
+
     {/* Accent Line */}
     <div className={`absolute top-0 left-0 w-full h-1 ${type === 'plumbing' ? 'bg-gradient-green' : 'bg-electric'}`} />
-    
+
+    {/* Corner ornament */}
+    <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-500 ${
+      type === 'plumbing' ? 'bg-green' : 'bg-electric'
+    }`} />
+
     {/* Icon */}
-    <div className={`w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 ${
+    <div className={`relative w-16 h-16 rounded-xl flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${
       type === 'plumbing' 
-        ? 'bg-green/10 group-hover:bg-green group-hover:text-secondary-foreground text-green' 
-        : 'bg-electric/10 group-hover:bg-electric group-hover:text-secondary-foreground text-electric'
+        ? 'bg-gradient-to-br from-green/20 to-green/5 group-hover:from-green group-hover:to-green-light group-hover:text-secondary-foreground text-green shadow-green/20' 
+        : 'bg-gradient-to-br from-electric/20 to-electric/5 group-hover:bg-electric group-hover:text-secondary-foreground text-electric'
     }`}>
-      <Icon className="w-7 h-7" />
+      <Icon className="w-8 h-8" />
     </div>
     
     {/* Content */}
-    <h3 className="font-display text-xl text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    <h3 className="relative font-display text-xl text-foreground mb-2 group-hover:text-green transition-colors duration-300">{title}</h3>
+    <p className="relative text-muted-foreground text-sm leading-relaxed">{description}</p>
   </div>
   );
 };
+
 
 const ServicesSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();

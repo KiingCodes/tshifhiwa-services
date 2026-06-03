@@ -24,8 +24,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled
-  ? "bg-white shadow-md py-3"
-  : "bg-white py-5"
+  ? "bg-white/30 backdrop-blur-xl shadow-lg border-b border-white/20 py-3"
+  : "bg-white/10 backdrop-blur-md border-b border-white/10 py-5"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -36,18 +36,19 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Tshifhiwa Logo"
-              className="h-14 w-auto object-contain"
+              className="h-14 w-auto object-contain drop-shadow-md"
             />
 
             <div>
-              <h1 className="font-display text-2xl text-black leading-tight">
+              <h1 className="font-display text-2xl md:text-3xl leading-tight tracking-wide bg-gradient-to-r from-forest via-green to-green-light bg-clip-text text-transparent drop-shadow-sm">
                 TSHIFHIWA
               </h1>
-              <p className="text-green text-sm font-display tracking-wider">
-                PLUMBING & ELECTRICAL
+              <p className="text-forest/80 text-[10px] md:text-xs font-display tracking-[0.25em] uppercase font-semibold">
+                Plumbing • Electrical • Services
               </p>
             </div>
           </div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

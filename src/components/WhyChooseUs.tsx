@@ -28,23 +28,29 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0]; index: n
   return (
     <div
       ref={ref}
-      className={`group flex gap-5 p-6 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-all duration-500 ${
+      className={`group relative flex gap-5 p-7 rounded-2xl bg-gradient-to-br from-primary-foreground/10 to-primary-foreground/5 backdrop-blur-md border border-primary-foreground/15 hover:border-green/40 hover:from-primary-foreground/15 transition-all duration-500 hover:-translate-y-1 hover:shadow-green overflow-hidden ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="flex-shrink-0">
-        <div className="w-14 h-14 rounded-lg bg-green/20 flex items-center justify-center group-hover:bg-green transition-colors duration-300">
-          <feature.icon className="w-7 h-7 text-green group-hover:text-secondary-foreground transition-colors duration-300" />
+      {/* Hover glow */}
+      <div className="absolute -inset-1 rounded-2xl bg-gradient-green opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+      {/* Corner accent */}
+      <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-green/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="relative flex-shrink-0">
+        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-green/30 to-green/10 flex items-center justify-center group-hover:from-green group-hover:to-green-light group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
+          <feature.icon className="w-8 h-8 text-green group-hover:text-secondary-foreground transition-colors duration-300" />
         </div>
       </div>
-      <div>
-        <h3 className="font-display text-xl text-primary-foreground mb-2">{feature.title}</h3>
-        <p className="text-primary-foreground/60 text-sm leading-relaxed">{feature.description}</p>
+      <div className="relative">
+        <h3 className="font-display text-xl text-primary-foreground mb-2 group-hover:text-green transition-colors duration-300">{feature.title}</h3>
+        <p className="text-primary-foreground/70 text-sm leading-relaxed">{feature.description}</p>
       </div>
     </div>
   );
 };
+
 
 const WhyChooseUs = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();

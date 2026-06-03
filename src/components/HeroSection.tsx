@@ -44,7 +44,7 @@ const HeroSection = () => {
             <img
               src={logo}
               alt="Tshifhiwa Plumbing & Electrical"
-              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-2xl animate-spin-slow"
+              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-2xl"
             />
           </div>
 

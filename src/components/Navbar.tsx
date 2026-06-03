@@ -24,8 +24,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled
-  ? "bg-white shadow-md py-3"
-  : "bg-white py-5"
+  ? "bg-white/30 backdrop-blur-xl shadow-lg border-b border-white/20 py-3"
+  : "bg-white/10 backdrop-blur-md border-b border-white/10 py-5"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -36,30 +36,31 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Tshifhiwa Logo"
-              className="h-14 w-auto object-contain"
+              className="h-14 w-auto object-contain drop-shadow-md"
             />
 
             <div>
-              <h1 className="font-display text-2xl text-black leading-tight">
+              <h1 className="font-display text-2xl md:text-3xl leading-tight tracking-wide bg-gradient-to-r from-forest via-green to-green-light bg-clip-text text-transparent drop-shadow-sm">
                 TSHIFHIWA
               </h1>
-              <p className="text-green text-sm font-display tracking-wider">
-                PLUMBING & ELECTRICAL
+              <p className="text-forest/80 text-[10px] md:text-xs font-display tracking-[0.25em] uppercase font-semibold">
+                Plumbing • Electrical • Services
               </p>
             </div>
           </div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("services")}
-              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
+              className="text-forest hover:text-green drop-shadow transition-colors font-medium"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("booking")}
-              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
+              className="text-forest hover:text-green drop-shadow transition-colors font-medium"
             >
               Book Now
             </button>
@@ -78,7 +79,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-primary-foreground p-2"
+            className="md:hidden text-forest p-2"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -90,17 +91,17 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-primary-foreground/10">
+          <div className="md:hidden mt-4 py-4 border-t border-forest/20">
             <div className="flex flex-col gap-4">
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
+                className="text-forest hover:text-green drop-shadow transition-colors font-medium text-left"
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection("booking")}
-                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
+                className="text-forest hover:text-green drop-shadow transition-colors font-medium text-left"
               >
                 Book Now
               </button>

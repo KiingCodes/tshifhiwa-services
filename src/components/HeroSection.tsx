@@ -14,44 +14,40 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image - clear, no blur */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBackground})` }}
+        className="absolute inset-0 bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${heroBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       />
       
-      {/* Dark Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-forest/90 via-forest/80 to-green-dark/70" />
+      {/* Subtle gradient overlay for text readability without blurring image */}
+      <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-transparent to-transparent" />
       
       {/* Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 border-4 border-green/20 rounded-full animate-float" />
         <div className="absolute top-40 right-20 w-24 h-24 border-4 border-green/30 rounded-full animate-float" style={{ animationDelay: "2s" }} />
         <div className="absolute bottom-40 left-1/4 w-16 h-16 bg-green/10 rounded-full animate-float" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/3 right-1/3 w-2 h-40 bg-gradient-to-b from-green/40 to-transparent rotate-45" />
-        <div className="absolute bottom-1/4 right-10 w-2 h-32 bg-gradient-to-b from-electric/40 to-transparent -rotate-45" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-20 min-h-screen flex flex-col justify-center">
         <div className="max-w-4xl">
-          
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-green/20 backdrop-blur-sm border border-green/30 rounded-full px-4 py-2 mb-8">
-            <Zap className="w-4 h-4 text-green" />
-            <span className="text-green text-sm font-medium">
-              Licensed & Certified Professionals
-            </span>
-          </div>
 
           {/* ✅ BIG LOGO INSTEAD OF HEADING */}
           <div className="mb-6 flex justify-center md:justify-start">
             <img
               src={logo}
               alt="Tshifhiwa Plumbing & Electrical"
-              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-xl animate-spin-slow"
+              className="h-50 md:h-64 lg:h-80 w-auto object-contain drop-shadow-2xl animate-spin-slow"
             />
           </div>
+
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mb-10 font-light">

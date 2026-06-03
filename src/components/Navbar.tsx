@@ -54,13 +54,13 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("services")}
-              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
+              className="text-forest hover:text-green drop-shadow transition-colors font-medium"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection("booking")}
-              className="text-primary-foreground/80 hover:text-green transition-colors font-medium"
+              className="text-forest hover:text-green drop-shadow transition-colors font-medium"
             >
               Book Now
             </button>
@@ -79,7 +79,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-primary-foreground p-2"
+            className="md:hidden text-forest p-2"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -91,17 +91,17 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-primary-foreground/10">
+          <div className="md:hidden mt-4 py-4 border-t border-forest/20">
             <div className="flex flex-col gap-4">
               <button
                 onClick={() => scrollToSection("services")}
-                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
+                className="text-forest hover:text-green drop-shadow transition-colors font-medium text-left"
               >
                 Services
               </button>
               <button
                 onClick={() => scrollToSection("booking")}
-                className="text-primary-foreground/80 hover:text-green transition-colors font-medium text-left"
+                className="text-forest hover:text-green drop-shadow transition-colors font-medium text-left"
               >
                 Book Now
               </button>

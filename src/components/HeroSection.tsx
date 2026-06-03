@@ -15,14 +15,13 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image - clear, no blur */}
-      <div 
-        className="absolute inset-0 bg-no-repeat"
-        style={{ 
-          backgroundImage: `url(${heroBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
+      <div className="absolute inset-0 bg-forest">
+        <img
+          src={heroBackground}
+          alt=""
+          className="w-full h-full object-contain md:object-cover object-center"
+        />
+      </div>
       
       {/* Subtle gradient overlay for text readability without blurring image */}
       <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/20 to-transparent" />

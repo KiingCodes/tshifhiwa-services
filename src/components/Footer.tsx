@@ -80,45 +80,13 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="font-display text-lg text-primary-foreground mb-4">
-              OUR SERVICES
-            </h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Wrench className="w-4 h-4 text-green" />
-                Plumbing Repairs
-              </li>
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Wrench className="w-4 h-4 text-green" />
-                Geyser Installation
-              </li>
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Zap className="w-4 h-4 text-electric" />
-                Electrical Wiring
-              </li>
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Zap className="w-4 h-4 text-electric" />
-                DB Board Installation
-              </li>
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Shield className="w-4 h-4 text-electric" />
-                Electric Fence & Alarms
-              </li>
-              <li className="flex items-center gap-2 text-primary-foreground/60">
-                <Shield className="w-4 h-4 text-electric" />
-                Gate Motor Installation
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="border-t border-primary-foreground/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/40 text-sm">
-              © {currentYear} Tshifhiwa Plumbing & Electrical. All rights
-              reserved.
+              © {currentYear} Tshifhiwa Plumbing & Electrical Services. All
+              rights reserved.
             </p>
             <div className="flex items-center gap-2">
               <span className="text-primary-foreground/40 text-sm">

@@ -63,6 +63,16 @@ const electricalServiceOptions = [
   "Emergency Electrical",
 ];
 
+const electronicsServiceOptions = [
+  "CCTV Installation",
+  "Electrcic Fence Installation & Repairs",
+  "Alarm Systems Installation & Repairs",
+  "Gate Motor & Electronic Gates",
+  "Barriers & Boom Gates",
+  "Electronics Keys & Smart Locks",
+  "Access Control Systems",
+];
+
 const timeSlots = [
   "08:00 - 10:00",
   "10:00 - 12:00",

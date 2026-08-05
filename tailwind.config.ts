@@ -58,6 +58,10 @@ export default {
         },
         steel: "hsl(var(--steel))",
         electric: "hsl(var(--electric-green))",
+        amber: {
+          DEFAULT: "hsl(var(--amber))",
+          light: "hsl(var(--amber-light))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

@@ -1,4 +1,3 @@
-import { Phone } from "lucide-react";
 
 const WhatsAppButton = () => (
   <a

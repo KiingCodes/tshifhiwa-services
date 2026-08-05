@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const BOOKINGS_INBOX = "bookings@tshifhiwa-services.co.za";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,91 +14,93 @@ interface BookingRequest {
   email: string;
   phone: string;
   serviceType: string;
+  serviceCategory?: string;
   service: string;
   preferredDate: string;
   preferredTime: string;
   message?: string;
 }
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+const isValidEmail = (value: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 255;
+
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const booking: BookingRequest = await req.json();
-    console.log("Received booking request:", booking);
+    if (!RESEND_API_KEY) throw new Error("Email service is not configured");
 
-    // Validate required fields
-    if (!booking.name || !booking.email || !booking.phone || !booking.serviceType || !booking.service || !booking.preferredDate || !booking.preferredTime) {
-      throw new Error("Missing required fields");
+    const booking: BookingRequest = await req.json();
+
+    const required: (keyof BookingRequest)[] = [
+      "name",
+      "email",
+      "phone",
+      "serviceType",
+      "service",
+      "preferredDate",
+      "preferredTime",
+    ];
+    for (const field of required) {
+      const value = booking[field];
+      if (typeof value !== "string" || value.trim().length === 0) {
+        throw new Error(`Missing required field: ${field}`);
+      }
+    }
+    if (!isValidEmail(booking.email.trim())) {
+      throw new Error("Invalid email address");
+    }
+    if (booking.name.length > 100 || booking.phone.length > 20) {
+      throw new Error("Input exceeds allowed length");
+    }
+    if (booking.message && booking.message.length > 1000) {
+      throw new Error("Message is too long");
     }
 
-    const emailHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-            .content { background: #f9fafb; padding: 20px; border: 1px solid #e5e7eb; }
-            .field { margin-bottom: 15px; }
-            .label { font-weight: bold; color: #166534; }
-            .value { margin-top: 5px; }
-            .footer { background: #166534; color: white; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; font-size: 12px; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1 style="margin: 0;">🔧 New Booking Request</h1>
-              <p style="margin: 10px 0 0;">Tshifhiwa Plumbing & Electrical</p>
-            </div>
-            <div class="content">
-              <div class="field">
-                <div class="label">👤 Customer Name</div>
-                <div class="value">${booking.name}</div>
-              </div>
-              <div class="field">
-                <div class="label">📧 Email</div>
-                <div class="value">${booking.email}</div>
-              </div>
-              <div class="field">
-                <div class="label">📱 Phone</div>
-                <div class="value">${booking.phone}</div>
-              </div>
-              <div class="field">
-                <div class="label">${booking.serviceType === 'plumbing' ? '🔧' : '⚡'} Service Type</div>
-                <div class="value">${booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1)}</div>
-              </div>
-              <div class="field">
-                <div class="label">🛠️ Specific Service</div>
-                <div class="value">${booking.service}</div>
-              </div>
-              <div class="field">
-                <div class="label">📅 Preferred Date</div>
-                <div class="value">${booking.preferredDate}</div>
-              </div>
-              <div class="field">
-                <div class="label">🕐 Preferred Time</div>
-                <div class="value">${booking.preferredTime}</div>
-              </div>
-              ${booking.message ? `
-              <div class="field">
-                <div class="label">💬 Additional Details</div>
-                <div class="value">${booking.message}</div>
-              </div>
-              ` : ''}
-            </div>
-            <div class="footer">
-              <p style="margin: 0;">Please respond to this booking within 24 hours.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    const category =
+      booking.serviceCategory ??
+      booking.serviceType.charAt(0).toUpperCase() + booking.serviceType.slice(1);
+
+    const row = (label: string, value: string) => `
+      <tr>
+        <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#475569;font-size:14px;width:40%;">${escapeHtml(label)}</td>
+        <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#0F172A;font-size:14px;font-weight:600;">${escapeHtml(value)}</td>
+      </tr>`;
+
+    const emailHtml = `<!DOCTYPE html>
+<html>
+  <body style="margin:0;padding:24px;background:#F8FAFC;font-family:Inter,Arial,sans-serif;">
+    <div style="max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
+      <div style="background:#0F4C3A;padding:28px 24px;">
+        <h1 style="margin:0;color:#ffffff;font-size:20px;">New Booking Request</h1>
+        <p style="margin:6px 0 0;color:#D97706;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Tshifhiwa Plumbing &amp; Electrical Services</p>
+      </div>
+      <table style="width:100%;border-collapse:collapse;">
+        ${row("Customer Name", booking.name)}
+        ${row("Email", booking.email)}
+        ${row("Phone", booking.phone)}
+        ${row("Service Category", category)}
+        ${row("Specific Service", booking.service)}
+        ${row("Preferred Date", booking.preferredDate)}
+        ${row("Preferred Time", booking.preferredTime)}
+        ${booking.message ? row("Additional Details", booking.message) : ""}
+      </table>
+      <div style="background:#F8FAFC;padding:18px 24px;color:#475569;font-size:12px;">
+        Please respond to this booking within 24 hours.
+      </div>
+    </div>
+  </body>
+</html>`;
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -107,8 +110,8 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Tshifhiwa Bookings <onboarding@resend.dev>",
-        to: ["nedaneh@outlook.com"],
-        subject: `New Booking: ${booking.service} - ${booking.name}`,
+        to: [BOOKINGS_INBOX],
+        subject: `New Booking: ${booking.service} — ${booking.name}`,
         html: emailHtml,
         reply_to: booking.email,
       }),
@@ -116,29 +119,25 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!res.ok) {
       const errorData = await res.text();
-      console.error("Resend API error:", errorData);
-      throw new Error(`Failed to send email: ${errorData}`);
+      console.error(`Resend API error [${res.status}]: ${errorData}`);
+      throw new Error("Failed to send booking email");
     }
 
     const data = await res.json();
-    console.log("Email sent successfully:", data);
+    console.log("Booking email sent:", data?.id);
 
-    return new Response(JSON.stringify({ success: true, data }), {
+    return new Response(JSON.stringify({ success: true, id: data?.id }), {
       status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
+      headers: { "Content-Type": "application/json", ...corsHeaders },
     });
-  } catch (error: any) {
-    console.error("Error in send-booking function:", error);
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
-    );
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Unexpected error";
+    console.error("Error in send-booking function:", message);
+    return new Response(JSON.stringify({ success: false, error: message }), {
+      status: 400,
+      headers: { "Content-Type": "application/json", ...corsHeaders },
+    });
   }
 };
 

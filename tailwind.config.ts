@@ -74,8 +74,13 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Oswald', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
       },
       borderRadius: {
         lg: "var(--radius)",
